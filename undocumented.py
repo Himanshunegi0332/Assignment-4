@@ -4,6 +4,9 @@ from typing import Dict, List, Optional
 
 
 def display_menu() -> None:
+    """
+    Docstring for display_menu
+    """
     print("-" * 30)
     print(
 """1. Add student
@@ -26,6 +29,14 @@ students: Dict[str, List[float]] = {
 
 
 def add_student(students: Dict[str, List[float]], name: str) -> None:
+    """
+    Docstring for add_student
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param name: Description
+    :type name: str
+    """
     if name not in students:
         students[name] = []
     else:
@@ -33,6 +44,16 @@ def add_student(students: Dict[str, List[float]], name: str) -> None:
 
 
 def add_grade(students: Dict[str, List[float]], name: str, grade: float) -> None:
+    """
+    Docstring for add_grade
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param name: Description
+    :type name: str
+    :param grade: Description
+    :type grade: float
+    """
     if name in students:
         if 0 <= grade <= 100:
             students[name].append(grade)
@@ -43,6 +64,16 @@ def add_grade(students: Dict[str, List[float]], name: str, grade: float) -> None
 
 
 def average(students: Dict[str, List[float]], name: str) -> Optional[float]:
+    """
+    Docstring for average
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param name: Description
+    :type name: str
+    :return: Description
+    :rtype: float | None
+    """
     if name in students and students[name]:
         return sum(students[name]) / len(students[name])
     else:
@@ -51,11 +82,27 @@ def average(students: Dict[str, List[float]], name: str) -> Optional[float]:
 
 
 def save_to_file(students: Dict[str, List[float]], filename: str) -> None:
+    """
+    Docstring for save_to_file
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param filename: Description
+    :type filename: str
+    """
     with open(filename, "w") as file:
         json.dump(students, file)
 
 
 def load_from_file(filename: str) -> Dict[str, List[float]]:
+    """
+    Docstring for load_from_file
+    
+    :param filename: Description
+    :type filename: str
+    :return: Description
+    :rtype: Dict[str, List[float]]
+    """
     if not os.path.exists(filename):
         print("file does not exist")
         return {}
@@ -65,6 +112,14 @@ def load_from_file(filename: str) -> Dict[str, List[float]]:
 
 
 def delete_student(students: Dict[str, List[float]], name: str) -> None:
+    """
+    Docstring for delete_student
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param name: Description
+    :type name: str
+    """
     if name in students:
         del students[name]
         print(f"deleted student {name}")
@@ -73,6 +128,16 @@ def delete_student(students: Dict[str, List[float]], name: str) -> None:
 
 
 def delete_grade(students: Dict[str, List[float]], name: str, grade: float) -> None:
+    """
+    Docstring for delete_grade
+    
+    :param students: Description
+    :type students: Dict[str, List[float]]
+    :param name: Description
+    :type name: str
+    :param grade: Description
+    :type grade: float
+    """
     if name not in students:
         print(f"student {name} does not exist")
         return
