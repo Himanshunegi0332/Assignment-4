@@ -148,41 +148,50 @@ def delete_grade(students: Dict[str, List[float]], name: str, grade: float) -> N
     print(f"removed grade {grade} from {name}")
 
 
-while True:
+def main() -> None:
+    """
+    Runs the interactive command-line menu for managing students and grades.
+    """
     filename: str = "students.json"
+    global students  # needed because you reassign students when loading
 
-    display_menu()
-    choice: str = input("choose an option: ")
+    while True:
+        display_menu()
+        choice: str = input("choose an option: ")
 
-    if choice == "1":
-        name: str = input("enter student name: ")
-        add_student(students, name)
+        if choice == "1":
+            name: str = input("enter student name: ")
+            add_student(students, name)
 
-    elif choice == "2":
-        name: str = input("enter student name: ")
-        grade: float = float(input("enter grade (0–100): "))
-        add_grade(students, name, grade)
+        elif choice == "2":
+            name: str = input("enter student name: ")
+            grade: float = float(input("enter grade (0–100): "))
+            add_grade(students, name, grade)
 
-    elif choice == "3":
-        name: str = input("enter student name: ")
-        result: Optional[float] = average(students, name)
-        if result is not None:
-            print(f"average grade for {name}: {round(result, 2)}")
+        elif choice == "3":
+            name: str = input("enter student name: ")
+            result: Optional[float] = average(students, name)
+            if result is not None:
+                print(f"average grade for {name}: {round(result, 2)}")
 
-    elif choice == "4":
-        for name, grades in students.items():
-            print(f"{name}: {grades}")
+        elif choice == "4":
+            for name, grades in students.items():
+                print(f"{name}: {grades}")
 
-    elif choice == "5":
-        save_to_file(students, filename)
-        print("saved")
+        elif choice == "5":
+            save_to_file(students, filename)
+            print("saved")
 
-    elif choice == "6":
-        students = load_from_file(filename)
-        print("loaded")
+        elif choice == "6":
+            students = load_from_file(filename)
+            print("loaded")
 
-    elif choice == "7":
-        break
+        elif choice == "7":
+            break
 
-    else:
-        print("invalid option")
+        else:
+            print("invalid option")
+
+
+if __name__ == "__main__":
+    main()
